@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le théorème de Pythagore</title>
+
+<style>
+:root {
+  --green:#728B62;
+  --light-green:#B5C7A3;
+  --beige:#E9D9B8;
+  --background:#FAF7EE;
+  --dark:#374A36;
+  --white:#FFFFFF;
+}
+
+* {
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--background);
+  color:var(--dark);
+  line-height:1.6;
+}
+
+header {
+  background:linear-gradient(135deg,var(--green),var(--light-green));
+  text-align:center;
+  padding:65px 20px;
+  color:white;
+}
+
+header h1 {
+  font-size:clamp(30px,5vw,48px);
+  margin:10px;
+}
+
+header p {
+  font-size:18px;
+}
+
+nav {
+  position:sticky;
+  top:0;
+  background:white;
+  padding:14px;
+  text-align:center;
+  box-shadow:0 3px 10px #ddd;
+  z-index:100;
+}
+
+nav a {
+  display:inline-block;
+  margin:6px 10px;
+  color:var(--dark);
+  text-decoration:none;
+  font-weight:bold;
+}
+
+nav a:hover {
+  color:var(--green);
+}
+
+main {
+  max-width:1050px;
+  margin:auto;
+  padding:20px;
+}
+
+section {
+  background:white;
+  margin:25px 0;
+  padding:28px;
+  border-radius:18px;
+  box-shadow:0 5px 15px #e5e1d6;
+}
+
+h2 {
+  color:var(--green);
+  border-bottom:3px solid var(--beige);
+  padding-bottom:10px;
+}
+
+h3 {
+  color:var(--green);
+}
+
+button {
+  background:var(--green);
+  color:white;
+  border:none;
+  border-radius:25px;
+  padding:12px 22px;
+  cursor:pointer;
+  font-weight:bold;
+  margin:8px 4px;
+}
+
+button:hover {
+  background:var(--dark);
+}
+
+.card {
+  background:var(--background);
+  border-radius:14px;
+  padding:20px;
+  margin:18px 0;
+}
+
+.formula {
+  background:#EAF0E5;
+  border-left:5px solid var(--green);
+  border-radius:10px;
+  padding:20px;
+  margin:18px 0;
+  text-align:center;
+  font-size:22px;
+  overflow-x:auto;
+}
+
+input[type="text"],
+input[type="number"] {
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+.question {
+  background:var(--background);
+  padding:18px;
+  border-radius:12px;
+  margin:15px 0;
+}
+
+.answer {
+  display:block;
+  padding:8px;
+  cursor:pointer;
+}
+
+.feedback {
+  font-weight:bold;
+  margin-top:15px;
+}
+
+details {
+  background:#f1f5ed;
+  padding:12px;
+  border-radius:10px;
+  margin:10px 0;
+  cursor:pointer;
+}
+
+svg {
+  max-width:100%;
+  height:auto;
+}
+
+#chatMessages {
+  height:270px;
+  overflow-y:auto;
+  background:var(--background);
+  padding:15px;
+  border-radius:12px;
+}
+
+.message {
+  background:#EAF0E5;
+  padding:12px;
+  border-radius:12px;
+  margin:10px 0;
+  white-space:pre-wrap;
+}
+
+.student {
+  background:#F1E6D2;
+  text-align:right;
+}
+
+footer {
+  background:var(--green);
+  color:white;
+  text-align:center;
+  padding:25px;
+}
+
+@media(max-width:600px) {
+  nav a {
+    font-size:13px;
+    margin:5px;
+  }
+
+  section {
+    padding:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>📐 Le théorème de Pythagore</h1>
+  <p>Apprendre les mathématiques facilement au collège</p>
+  <p>Observer · Comprendre · Calculer · Réussir</p>
+  <button onclick="location.href='#decouverte'">
+    Commencer à apprendre
+  </button>
+</header>
+
+<nav>
+  <a href="#decouverte">Découverte</a>
+  <a href="#cours">Cours</a>
+  <a href="#exercices">Exercices</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#qcm">QCM</a>
+  <a href="#defis">Défis</a>
+  <a href="#assistant">Assistant</a>
+</nav>
+
+<main>
+
+<!-- 1. ACTIVITE DE DECOUVERTE -->
+
+<section id="decouverte">
+
+<h2>1. Activité de découverte</h2>
+
+<p>
+Observe ce triangle ABC rectangle en A.
+</p>
+
+<svg viewBox="0 0 420 260">
+  <polygon points="70,210 70,40 350,210"
+  fill="#B5C7A3" fill-opacity=".3"
+  stroke="#728B62" stroke-width="4"/>
+
+  <path d="M70 190 L90 190 L90 210"
+  fill="none" stroke="#374A36" stroke-width="2"/>
+
+  <text x="45" y="230" font-size="20">A</text>
+  <text x="45" y="30" font-size="20">B</text>
+  <text x="355" y="230" font-size="20">C</text>
+  <text x="30" y="130" font-size="17">AB</text>
+  <text x="190" y="240" font-size="17">AC</text>
+  <text x="220" y="105" font-size="17">BC</text>
+</svg>
+
+<div class="card">
+<h3>Question</h3>
+<p>
+Comment appelle-t-on le côté opposé à l'angle droit ?
+</p>
+
+<input id="discovery" type="text"
+placeholder="Écris ta réponse">
+
+<button onclick="checkDiscovery()">Vérifier</button>
+
+<p id="discoveryResult" class="feedback"></p>
+</div>
+
+</section>
+
+<!-- 2. POINT DE COURS -->
+
+<section id="cours">
+
+<h2>2. Point de cours</h2>
+
+<h3>Énoncé du théorème</h3>
+
+<p>
+Dans un triangle rectangle, le carré de la longueur
+de l'hypoténuse est égal à la somme des carrés
+des longueurs des deux autres côtés.
+</p>
+
+<div class="formula">
+<strong>BC² = AB² + AC²</strong>
+</div>
+
+<p>
+Le triangle ABC est rectangle en A.
+BC est donc l'hypoténuse.
+</p>
+
+<h3>Exemple expliqué</h3>
+
+<p>
+On considère un triangle rectangle dont les côtés
+de l'angle droit mesurent 3 cm et 4 cm.
+Calculons l'hypoténuse.
+</p>
+
+<div class="formula">
+c² = 3² + 4²
+<br>
+c² = 9 + 16
+<br>
+c² = 25
+<br>
+c = √25 = 5 cm
+</div>
+
+<p><strong>Conclusion :</strong> l'hypoténuse mesure 5 cm.</p>
+
+<h3>Les étapes à retenir</h3>
+
+<ol>
+<li>Vérifier que le triangle est rectangle.</li>
+<li>Identifier l'hypoténuse.</li>
+<li>Écrire le théorème de Pythagore.</li>
+<li>Remplacer par les longueurs connues.</li>
+<li>Effectuer les calculs et conclure avec l'unité.</li>
+</ol>
+
+</section>
+
+<!-- 3. EXERCICES -->
+
+<section id="exercices">
+
+<h2>3. Exercices d'application</h2>
+
+<div class="card">
+<h3>Exercice 1 : Niveau facile</h3>
+
+<p>
+Un triangle rectangle possède deux côtés de 6 cm et 8 cm.
+Calcule son hypoténuse.
+</p>
+
+<details>
+<summary>Voir un indice</summary>
+<p>Utilise le théorème de Pythagore.</p>
+</details>
+
+<details>
+<summary>Voir la correction</summary>
+<p>
+c² = 6² + 8² = 36 + 64 = 100.
+<br>
+c = 10 cm.
+</p>
+</details>
+</div>
+
+<div class="card">
+<h3>Exercice 2 : Niveau moyen</h3>
+
+<p>
+L'hypoténuse mesure 13 cm et un autre côté mesure 5 cm.
+Calcule le troisième côté.
+</p>
+
+<details>
+<summary>Voir un indice</summary>
+<p>
+Le carré du côté recherché est égal au carré
+de l'hypoténuse moins le carré de l'autre côté.
+</p>
+</details>
+
+<details>
+<summary>Voir la correction</summary>
+<p>
+x² = 13² - 5² = 169 - 25 = 144.
+<br>
+x = 12 cm.
+</p>
+</details>
+</div>
+
+<div class="card">
+<h3>Exercice 3 : Niveau avancé</h3>
+
+<p>
+Un triangle rectangle possède deux côtés de 7 cm et 24 cm.
+Calcule son hypoténuse.
+</p>
+
+<details>
+<summary>Voir la correction</summary>
+<p>
+c² = 49 + 576 = 625.
+<br>
+c = 25 cm.
+</p>
+</details>
+</div>
+
+</section>
+
+<!-- 4. QUIZ -->
+
+<section id="quiz">
+
+<h2>4. Quiz de connaissances</h2>
+
+<div class="question">
+<strong>1. Le théorème de Pythagore s'applique dans :</strong>
+
+<label class="answer">
+<input type="radio" name="quiz1" value="a">
+Un triangle quelconque
+</label>
+
+<label class="answer">
+<input type="radio" name="quiz1" value="b">
+Un triangle rectangle
+</label>
+
+<label class="answer">
+<input type="radio" name="quiz1" value="c">
+Un cercle
+</label>
+</div>
+
+<div class="question">
+<strong>2. L'hypoténuse est :</strong>
+
+<label class="answer">
+<input type="radio" name="quiz2" value="a">
+Le côté opposé à l'angle droit
+</label>
+
+<label class="answer">
+<input type="radio" name="quiz2" value="b">
+Le côté le plus petit
+</label>
+
+<label class="answer">
+<input type="radio" name="quiz2" value="c">
+Un angle
+</label>
+</div>
+
+<button onclick="checkQuiz()">Valider mes réponses</button>
+<p id="quizResult" class="feedback"></p>
+
+</section>
+
+<!-- 5. QCM -->
+
+<section id="qcm">
+
+<h2>5. QCM à quatre options</h2>
+
+<div id="qcmQuestions"></div>
+
+<button onclick="checkQCM()">Valider le QCM</button>
+<p id="qcmResult" class="feedback"></p>
+
+</section>
+
+<!-- 6. POUR ALLER PLUS LOIN -->
+
+<section id="defis">
+
+<h2>6. Pour aller plus loin</h2>
+
+<div class="card">
+<h3>Défi : Le jardin</h3>
+
+<p>
+Un jardin rectangulaire mesure 9 mètres de longueur
+et 12 mètres de largeur.
+Quelle est la longueur de sa diagonale ?
+</p>
+
+<details>
+<summary>Voir un indice</summary>
+<p>
+La diagonale est l'hypoténuse d'un triangle rectangle.
+</p>
+</details>
+
+<details>
+<summary>Voir la correction</summary>
+<p>
+d² = 9² + 12² = 81 + 144 = 225.
+<br>
+d = 15 mètres.
+</p>
+</details>
+</div>
+
+<div class="card">
+<h3>Calculateur de l'hypoténuse</h3>
+
+<label for="sideA">Premier côté (cm)</label>
+<input type="number" id="sideA" value="3" min="0.01" step="any">
+
+<label for="sideB">Deuxième côté (cm)</label>
+<input type="number" id="sideB" value="4" min="0.01" step="any">
+
+<button onclick="calculate()">Calculer</button>
+
+<p id="calcResult" class="feedback"></p>
+</div>
+
+</section>
+
+<!-- 7. ASSISTANT -->
+
+<section id="assistant">
+
+<h2>7. Mon assistant pédagogique</h2>
+
+<p>
+Pose tes questions sur le théorème de Pythagore.
+</p>
+
+<div id="chatMessages">
+<div class="message">
+Bonjour ! Je suis ton assistant pédagogique.
+Je peux t'aider à comprendre le théorème de Pythagore.
+</div>
+</div>
+
+<input id="chatInput" type="text"
+placeholder="Écris ta question ici...">
+
+<button onclick="sendQuestion()">Envoyer</button>
+
+<p>
+<small>
+Cette version utilise des réponses prédéfinies.
+Une véritable IA nécessitera une connexion sécurisée à un serveur.
+</small>
+</p>
+
+</section>
+
+</main>
+
+<footer>
+<p>📐 Le théorème de Pythagore</p>
+<p>Site pédagogique de mathématiques · Collège</p>
+</footer>
+
+<script>
+
+// ACTIVITE DE DECOUVERTE
+
+function checkDiscovery() {
+  const answer = document.getElementById("discovery")
+    .value.toLowerCase().trim();
+
+  const result = document.getElementById("discoveryResult");
+
+  if (answer.includes("hypoténuse") ||
+      answer.includes("hypotenuse")) {
+    result.textContent = "Bravo ! C'est la bonne réponse.";
+  } else {
+    result.textContent =
+      "Indice : c'est le côté opposé à l'angle droit.";
+  }
+}
+
+// QUIZ
+
+function checkQuiz() {
+  let score = 0;
+
+  if (document.querySelector('input[name="quiz1"]:checked')?.value === "b") {
+    score++;
+  }
+
+  if (document.querySelector('input[name="quiz2"]:checked')?.value === "a") {
+    score++;
+  }
+
+  document.getElementById("quizResult").textContent =
+    "Ton résultat : " + score + "/2";
+}
+
+// QCM
+
+const questions = [
+  {
+    text: "Combien vaut 3² + 4² ?",
+    options: ["7", "12", "25", "49"],
+    correct: 2
+  },
+  {
+    text: "Quelle est l'hypoténuse ?",
+    options: [
+      "Le côté opposé à l'angle droit",
+      "Le plus petit côté",
+      "Un angle",
+      "Une hauteur"
+    ],
+    correct: 0
+  },
+  {
+    text: "Si les côtés mesurent 5 et 12, l'hypoténuse vaut :",
+    options: ["10", "13", "15", "17"],
+    correct: 1
+  },
+  {
+    text: "Le théorème de Pythagore concerne :",
+    options: [
+      "Les cercles",
+      "Les carrés",
+      "Les triangles rectangles",
+      "Les rectangles uniquement"
+    ],
+    correct: 2
+  }
+];
+
+const qcmZone = document.getElementById("qcmQuestions");
+
+questions.forEach((q, i) => {
+  const card = document.createElement("div");
+  card.className = "question";
+
+  const title = document.createElement("strong");
+  title.textContent = (i + 1) + ". " + q.text;
+  card.appendChild(title);
+
+  q.options.forEach((option, j) => {
+    const label = document.createElement("label");
+    label.className = "answer";
+
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = "qcm" + i;
+    radio.value = j;
+
+    label.appendChild(radio);
+    label.appendChild(document.createTextNode(
+      " " + String.fromCharCode(65 + j) + ". " + option
+    ));
+
+    card.appendChild(label);
+  });
+
+  qcmZone.appendChild(card);
+});
+
+function checkQCM() {
+  let score = 0;
+  let unanswered = 0;
+
+  questions.forEach((q, i) => {
+    const answer = document.querySelector(
+      'input[name="qcm' + i + '"]:checked'
+    );
+
+    if (!answer) {
+      unanswered++;
+    } else if (Number(answer.value) === q.correct) {
+      score++;
+    }
+  });
+
+  const result = document.getElementById("qcmResult");
+
+  result.textContent = unanswered > 0
+    ? "Réponds aux " + unanswered +
+      " question(s) restantes. Score actuel : " + score + "/4."
+    : "Ton score : " + score + "/4. " +
+      (score === 4 ? "Excellent travail !" :
+       "Continue à t'entraîner !");
+}
+
+// CALCULATEUR
+
+function calculate() {
+  const a = Number(document.getElementById("sideA").value);
+  const b = Number(document.getElementById("sideB").value);
+
+  const result = document.getElementById("calcResult");
+
+  if (!Number.isFinite(a) || !Number.isFinite(b) ||
+      a <= 0 || b <= 0) {
+    result.textContent = "Entre deux longueurs positives.";
+    return;
+  }
+
+  const c = Math.sqrt(a * a + b * b);
+
+  result.textContent =
+    "Hypoténuse = √(" + a + "² + " + b + "²) = " +
+    c.toFixed(2) + " cm.";
+}
+
+// ASSISTANT PEDAGOGIQUE DE DEMONSTRATION
+
+function sendQuestion() {
+  const input = document.getElementById("chatInput");
+  const question = input.value.trim();
+
+  if (!question) return;
+
+  const chat = document.getElementById("chatMessages");
+
+  const student = document.createElement("div");
+  student.className = "message student";
+  student.textContent = question;
+  chat.appendChild(student);
+
+  const q = question.toLowerCase();
+  let answer = "";
+
+  if (q.includes("formule")) {
+    answer =
+      "Dans un triangle rectangle, le carré de l'hypoténuse est égal à la somme des carrés des deux autres côtés.";
+  } else if (q.includes("hypoténuse") ||
+             q.includes("hypotenuse")) {
+    answer =
+      "L'hypoténuse est le côté opposé à l'angle droit. C'est aussi le côté le plus long.";
+  } else if (q.includes("indice") || q.includes("aide")) {
+    answer =
+      "Commence par repérer l'angle droit. Ensuite, identifie l'hypoténuse et les deux autres côtés.";
+  } else if (q.includes("exercice")) {
+    answer =
+      "Petit exercice : un triangle rectangle possède deux côtés de 5 cm et 12 cm. Essaie de calculer l'hypoténuse. Indice : utilise les carrés des longueurs.";
+  } else {
+    answer =
+      "Je peux t'aider avec la formule, l'hypoténuse ou les exercices. Précise la partie que tu souhaites comprendre.";
+  }
+
+  const bot = document.createElement("div");
+  bot.className = "message";
+  bot.textContent = answer;
+  chat.appendChild(bot);
+
+  chat.scrollTop = chat.scrollHeight;
+  input.value = "";
+}
+
+</script>
+
+</body>
+</html>
